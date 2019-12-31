@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import MaterialTable from 'material-table'
+import { Container, Row, Col } from 'react-bootstrap';
 
 function App() {
-  return (
+
+  const initialState = {
+    books: [{name:"book1", genre:"horror", author:"J.K Rowling"},{name:"book2"}]
+  }
+
+  const [books,setBooks] = useState(initialState);
+
+  return (        
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container>
+        <Row>
+          <Col>
+            <h1 style={{color:"charcoal", fontSize:"2em", textAlign:"center"}}>Serify</h1>
+            <MaterialTable
+              columns={[
+                    { title: 'Name', field: 'name' },
+                    { title: 'Genre', field: 'genre' },
+                    { title: 'Author', field: 'author' }
+                  ]}
+              data={books.books}
+              title="Demo Table"
+            />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
