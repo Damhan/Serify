@@ -25,6 +25,9 @@ function App() {
                   ]}
               data={books.books}
               title="Demo Table"
+              options={{
+                search:true
+              }}
             />
           </Col>
         </Row>
