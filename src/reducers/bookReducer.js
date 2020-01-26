@@ -1,12 +1,9 @@
-import uuid from 'uuid';
 import {GET_BOOKS} from './../actions/types';
+import {jsonbooks} from './../books';
 
 //Adding some static data to our reducers state.
 const initialState = {
-    books: [
-        {id: uuid(), name:"book1", genre:"horror", author:"J.K Rowling"},
-        {id: uuid(), name:"book2", genre:"sci-fi", author:"Some Author"}
-    ]
+    books: jsonbooks
 }
 
 export default function(state=initialState, action) {

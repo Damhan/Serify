@@ -3,6 +3,7 @@ import '../App.css';
 import MaterialTable from 'material-table';
 import {getBooks} from './../actions/bookActions';
 import {useSelector,useDispatch} from 'react-redux';
+import {jsonbooks} from './../books';
 
 function ListTable() {
 
@@ -22,9 +23,9 @@ function ListTable() {
         <h1 style={{color:"charcoal", fontSize:"2em", textAlign:"center"}}>Serify</h1>
         <MaterialTable
         columns={[
-                { title: 'Name', field: 'name' },
-                { title: 'Genre', field: 'genre' },
-                { title: 'Author', field: 'author' }
+                { title: 'Name', field: 'title' },
+                { title: 'Genre', field: 'categories' },
+                { title: 'Author', field: 'authors' }
             ]}
         data={bookR.books}
         title="Demo Table"
