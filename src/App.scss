@@ -1,0 +1,26 @@
+/* Font px to rem mixin */
+@mixin font-size($sizeValue: 1.6) {
+    font-size: ($sizeValue * 10) + px;
+    font-size: $sizeValue + rem;
+}
+
+/* Book Item */
+.book-container {
+    width: 8vw;
+    height:20vh;
+    margin: 3vw;
+    float:left;
+}
+
+.book-title {
+    @include font-size()
+}
+
+.book-authors {
+    @include font-size(1.4)
+}
+
+/* Book Item List */
+.books-container {
+    width: 100vw;
+}

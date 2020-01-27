@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import './App.scss';
+import { Container} from 'react-bootstrap';
 import {Provider} from 'react-redux';
 import store from './store';
 import ListTable from './components/ListTable'
@@ -10,12 +10,8 @@ function App() {
   return (        
     <Provider store={store}>
       <div className="App">
-        <Container>
-          <Row>
-            <Col>
+        <Container fluid={"true"} className="px-0">
               <ListTable/>
-            </Col>
-          </Row>
         </Container>
       </div>
     </Provider>
