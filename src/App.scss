@@ -24,3 +24,11 @@
 .books-container {
     width: 100vw;
 }
+
+/* Book Item List Actions */
+.search-bar {
+    float:right;
+    margin-top: 2vh;
+    margin-right: 5vw;
+    @include font-size(1.2)
+}
