@@ -32,3 +32,16 @@
     margin-right: 5vw;
     @include font-size(1.2)
 }
+
+.sort-select {
+    float:left;
+    clear:left;
+    margin-top: 2vh;
+    margin-left: 3vw;
+    @include font-size(1.2)
+}
+
+.list-functions {
+    width: 100vw;
+    height: 5vh;
+}

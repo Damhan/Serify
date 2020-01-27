@@ -7,35 +7,50 @@ import SearchIcon from '@material-ui/icons/Search';
 
 function ListTable() {
 
+  const compareLength = ( a, b ) => {
+    if ( a.pageCount < b.pageCount ){
+      return -1;
+    }
+    if ( a.pageCount > b.pageCount ){
+      return 1; 
+    }
+    return 0;
+  }
+
+  /* TODO:
+  -Implement compare method for date sort.
+  */
+  const compareDate = ( a, b ) => {
+    const first = a.publishedDate.$date;
+    const second = b.publishedDate.$date;
+    if (new Date(first) < new Date(second)){
+      return -1;
+    }
+    if (new Date(first) > new Date(second)){
+      return 1; 
+    }
+    return 0;
+  }
+
   const bookR = useSelector(state => state.bookR)
+
+  const[sortLength, setSortLength] = useState(true);
 
   const [filter, setFilter] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  const handleFilter = (e) => {
     setFilter(e.target.value);
   }
-    /* TODO:
-    -Implement handlesort.
-    -Implement sort based on select choice.
-    -Use compare method for pagecount sort.
-    -Implement compare method for date sort.
-    */
+
   const handleSort = (e) => {
-
-  }
-
-  //TODO:
-  //Use this
-  const compare = ( a, b ) => {
-    if ( a.pageCount < b.pageCount ){
-      return -1;
+    if(e.target.value.includes("length")) {
+      setSortLength(true)
     }
-    if ( a.pageCount > b.pageCount ){
-      return 1;
+    else {
+      setSortLength(false)
     }
-    return 0;
   }
 
   //FIXME:
@@ -44,26 +59,27 @@ function ListTable() {
     dispatch(getBooks())
   },[])
 
-
-  const books = bookR.books.filter((book) => book.title.toLowerCase().includes(filter.toLowerCase())).map((book)=>
+  //-Filter acording to search bar.
+  //-Check sort type, then sort list.
+  //-Map through list.
+  const books = bookR.books.filter((book) => book.title.toLowerCase().includes(filter.toLowerCase())).sort(sortLength ? compareLength : compareDate).map((book)=>
     <Book key={book.isbn} book={book}/>
   );
 
   return (
     <div>
-        <div className="search-bar">
-          <SearchIcon/>
-          <input type="text" value={filter}
-          onChange={handleChange}
-          placeholder="Search.."/>
-        </div>
-        <select onChange={handleSort}>
+      <div className="list-functions">
+        <select className="sort-select" onChange={handleSort}>
           <option value="length">Length</option>
           <option value="date">Date</option>
         </select>
-        <h1 style={{color:"charcoal", fontSize:"2em", textAlign:"center"}}>Serify</h1>
-        
-        <br/>
+        <div className="search-bar">
+          <SearchIcon/>
+          <input type="text" value={filter}
+          onChange={handleFilter}
+          placeholder="Search.."/>
+        </div>
+      </div>
 
         <div className="books-container">
           {books}
