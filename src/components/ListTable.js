@@ -7,6 +7,9 @@ import SearchIcon from '@material-ui/icons/Search';
 
 function ListTable() {
 
+  /* compareLength(Length1, Length2)
+    comparitor for sorting books by length.
+  */
   const compareLength = ( a, b ) => {
     if ( a.pageCount < b.pageCount ){
       return -1;
@@ -17,8 +20,8 @@ function ListTable() {
     return 0;
   }
 
-  /* TODO:
-  -Implement compare method for date sort.
+  /* compareDate(Date1, Date2)
+    comparitor for sorting books by date.
   */
   const compareDate = ( a, b ) => {
     const first = a.publishedDate.$date;
@@ -44,6 +47,8 @@ function ListTable() {
     setFilter(e.target.value);
   }
 
+  //Handler for sorting by length or date, default is length.
+  //Sorts by date when sort length is set to false.
   const handleSort = (e) => {
     if(e.target.value.includes("length")) {
       setSortLength(true)
@@ -53,8 +58,7 @@ function ListTable() {
     }
   }
 
-  //FIXME:
-  //Throwing a warning about useEffect hook missing dispatch dependancy.
+
   useEffect(() => {
     dispatch(getBooks())
   },[])
