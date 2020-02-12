@@ -1,6 +1,6 @@
 ## Serify
 
-Serify is aa front-end React application for searching and viewing book information.
+Serify is a front-end React application for searching and viewing book information.
 
 ## Project Tracking / Roadmap
 
